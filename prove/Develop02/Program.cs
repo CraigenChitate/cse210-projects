@@ -24,98 +24,9 @@
 //list. The program then adds the entry to the journal.
 // Entries are displayed in the "Display Journal" option, and the user can save and load the journal to/from CSV files.
 
-using System;
-using System.Collections.Generic;
-using System.IO;
+// using System;
 
-class JournalEntry  //This class represents an entry in the journal.
-{
-    public string Prompt { get; set; }
-    public string Response { get; set; }
-    public string Date { get; set; }
-
-    public JournalEntry(string prompt, string response, string date)
-    {
-        Prompt = prompt;
-        Response = response;
-        Date = date;
-    }
-
-    public override string ToString()
-    {
-        return $"{Date}: {Prompt}\n{Response}\n";
-    }
-}
-
-class Journal //This class manages a list of journal entries (List<JournalEntry>).
-// It provides methods to add entries, display entries, save the journal to a CSV file, and load the journal from a CSV file.
-{
-    public List<JournalEntry> entries = new List<JournalEntry>();
-
-    public void AddEntry(string prompt, string response)
-    {
-        string date = DateTime.Now.ToString("dd-MM-yyyy HH:mm:ss");
-        JournalEntry entry = new JournalEntry(prompt, response, date);
-        entries.Add(entry);
-    }
-
-    public void DisplayEntries()
-    {
-        foreach (var entry in entries)
-        {
-            Console.WriteLine(entry);
-        }
-    }
-
-    public void SaveToCsv(string filename)//the program saves what the user has written in  a csv file 
-    {
-        try
-        {
-        using (StreamWriter writer = new StreamWriter(filename, true)) //By passing true as the second parameter, 
-        //I have enabled append mode, which means that new entries will be added to the end of the existing 
-        //file without overwriting the previous content.
-        {
-            foreach (var entry in entries)
-            {
-                writer.WriteLine($"{entry.Date},{entry.Prompt},{entry.Response}");
-            }
-        }
-        Console.WriteLine("Journal entry has been  saved to CSV file.");
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine($"Error saving journal: {e.Message}");
-    }
-    }
-
-    public void LoadFromCsv(string filename)//the progran loads what the user has written to a csv file
-    {
-        entries.Clear();
-        try
-        {
-            using (StreamReader reader = new StreamReader(filename))
-            {
-                string line;
-                while ((line = reader.ReadLine()) != null)
-                {
-                    string[] parts = line.Split(',');
-                    if (parts.Length == 3)
-                    {
-                        entries.Add(new JournalEntry(parts[1], parts[2], parts[0]));
-                    }
-                }
-            }
-            Console.WriteLine("Journal is loaded from CSV file.");
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine($"Error loading journal: {e.Message}"); //to provide any errors in details if any
-        }
-    }
-}
-
-class Program //This is the entry point of the application.
-//It contains the main menu loop for user interaction.
+class Program
 {
     static void Main()
     {
@@ -130,7 +41,7 @@ class Program //This is the entry point of the application.
             Console.WriteLine("3. Save Journal to CSV");
             Console.WriteLine("4. Load Journal from CSV");
             Console.WriteLine("5. Exit");
-            Console.Write("Enter the your chosen choice (as a number): ");
+            Console.Write("Enter your chosen choice (as a number): ");
 
             int choice;
             if (int.TryParse(Console.ReadLine(), out choice))
@@ -138,7 +49,7 @@ class Program //This is the entry point of the application.
                 switch (choice)
                 {
                     case 1:
-                        Console.WriteLine("Choose any  prompt from the list:");
+                        Console.WriteLine("Choose any prompt from the list:");
                         Console.WriteLine("1. Who was the most interesting person I interacted with today?");
                         Console.WriteLine("2. What was the best part of my day?");
                         Console.WriteLine("3. How did I see the hand of the Lord in my life today?");
@@ -177,7 +88,7 @@ class Program //This is the entry point of the application.
                         journal.DisplayEntries();
                         break;
                     case 3:
-                        Console.Write("Enter the  name of the file to save the journal (example, journal.csv): ");
+                        Console.Write("Enter the name of the file to save the journal (example, journal.csv): ");
                         string saveFileName = Console.ReadLine();
                         journal.SaveToCsv(saveFileName);
                         break;
