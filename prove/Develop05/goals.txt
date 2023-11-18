@@ -1,0 +1,2 @@
+SimpleGoal|church||0|
+ChecklistGoal|church||0|
