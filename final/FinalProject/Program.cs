@@ -1,6 +1,6 @@
-
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 class Program
 {
@@ -50,7 +50,7 @@ class Program
                     break;
 
                 case "5":
-                    Console.WriteLine("Exiting program.");
+                    Console.WriteLine("Exiting program............");
                     return;
 
                 default:

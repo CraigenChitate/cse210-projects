@@ -1,22 +1,19 @@
-
 using System;
 
 public abstract class Note
 {
-    protected string Title { get; set; }
-    protected DateTime CreationDate { get; set; }
-       //public string Title { get; protected set; }
-       //public DateTime CreationDate { get; protected set; }
+    protected string _title { get; set; }
+    protected DateTime _creationDate { get; set; }
 
     public Note(string title, DateTime creationDate)
     {
-        Title = title;
-        CreationDate = creationDate;
+        _title = title;
+        _creationDate = creationDate;
     }
 
     public override string ToString()
     {
-        return $"Title: {Title}\nCreation Date: {CreationDate}";
+        return $"Title: {_title}\nCreation Date: {_creationDate}";
     }
 
     public static void DisplayAllNotes(Note[] notes)

@@ -1,22 +1,22 @@
-
+using System;
 using System.Collections.Generic;
 
 public class NoteManager
 {
-    private List<Note> Notes { get; set; }
+    private List<Note> _notes { get; set; }
 
     public NoteManager()
     {
-        Notes = new List<Note>();
+        _notes = new List<Note>();
     }
 
     public void AddNote(Note note)
     {
-        Notes.Add(note);
+        _notes.Add(note);
     }
 
     public void DisplayAllNotes()
     {
-        Note.DisplayAllNotes(Notes.ToArray());
+        Note.DisplayAllNotes(_notes.ToArray());
     }
 }
