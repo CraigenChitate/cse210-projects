@@ -1,9 +1,4 @@
 
-//the program add text note, checklist note, adds a reminder and displays all the notes
-//the add reminder allows users to add a reminder and also to add the time where the reminder is going to be needed
-//the checklist allows the user to enter food items or notes and they also are separated with commas.
-//once the user is done the can press 5 to exit
-
 using System;
 using System.Collections.Generic;
 
@@ -46,13 +41,12 @@ class Program
                     string reminderText = Console.ReadLine();
                     Console.Write("Enter reminder date (yyyy-MM-dd HH:mm): ");
                     DateTime reminderDate = DateTime.Parse(Console.ReadLine());
-                    Reminder reminder = new Reminder(reminderText, DateTime.Now, reminderDate);
+                    ReminderNote reminder = new ReminderNote("Reminder", DateTime.Now, reminderDate, reminderText);
                     noteManager.AddNote(reminder);
                     break;
 
                 case "4":
-                    UserInterface ui = new UserInterface();
-                    ui.DisplayAllNotes(noteManager);
+                    noteManager.DisplayAllNotes();
                     break;
 
                 case "5":
@@ -64,7 +58,7 @@ class Program
                     break;
             }
 
-            Console.WriteLine(); 
+            Console.WriteLine();
         }
     }
 }

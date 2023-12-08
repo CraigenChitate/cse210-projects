@@ -1,18 +1,19 @@
 
+using System;
+
 public class TextNote : Note
 {
     private string Content { get; set; }
+    //public string Content { get; protected set; }
 
     public TextNote(string title, DateTime creationDate, string content)
+        : base(title, creationDate)
     {
-        Title = title;
-        CreationDate = creationDate;
         Content = content;
     }
 
-    public override void DisplayContent()
+    public override string ToString()
     {
-        base.DisplayContent();
-        Console.WriteLine($"Content: {Content}");
+        return base.ToString() + $"\nContent: {Content}";
     }
 }
